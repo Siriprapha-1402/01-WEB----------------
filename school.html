@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รายงานการฝึกปฏิบัติงานสอน | สถานศึกษา</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: fantasy-book serif for Thai display, Cinzel for engraved Latin labels -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&family=Noto+Serif+Thai:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            arcane: {
+              void: '#0A0A0C',
+              purple: '#2B2B33',
+              purpleLight: '#3F3F4D',
+              wine: '#6B0F1A',
+              wineLight: '#8C1C28',
+              wineDeep: '#3D0710',
+              gold: '#C9A227',
+              goldBright: '#F2D272',
+              goldDim: '#8C6D3F',
+              parchment: '#E8D6A8',
+              parchmentLight: '#F4E8C4',
+              parchmentDark: '#CBAA72',
+              ink: '#231409'
+            }
+          },
+          fontFamily: {
+            serif: ['"Noto Serif Thai"', '"Libre Baskerville"', 'serif'],
+            rune: ['"Cinzel"', 'serif'],
+            sans: ['"Sarabun"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --void: #0A0A0C; --void2: #17171B;
+      --purple: #2B2B33; --purple-light: #3F3F4D;
+      --wine: #6B0F1A; --wine-light: #8C1C28; --wine-deep: #3D0710;
+      --gold: #C9A227; --gold-bright: #F2D272; --gold-dim: #8C6D3F;
+      --parchment: #E8D6A8; --parchment-light: #F4E8C4; --parchment-dark: #CBAA72;
+      --ink: #231409; --ink-soft: #4A3420;
+      --emerald: #1F5C4A; --emerald-light: #2E8067;
+      --ruby: #6B0F22; --ruby-light: #9A1B34;
+      --topaz: #8A5A12; --topaz-light: #C68A22;
+    }
+    * { box-sizing: border-box; }
+
+    body {
+      color: var(--parchment-light);
+      font-family: "Sarabun", "Noto Serif Thai", sans-serif;
+      background:
+        radial-gradient(ellipse 900px 600px at 12% -8%, rgba(107, 15, 26, .3), transparent 60%),
+        radial-gradient(ellipse 900px 700px at 88% 108%, rgba(60, 60, 70, .4), transparent 60%),
+        radial-gradient(circle at 50% 28%, #1c1028 0%, #0c0714 58%, #060309 100%);
+      background-attachment: fixed;
+      position: relative;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(233, 214, 168, .05) 0.8px, transparent 0.8px);
+      background-size: 14px 14px;
+    }
+
+    .serif-title { font-family: "Noto Serif Thai", "Libre Baskerville", serif; }
+    .rune-caption { font-family: "Cinzel", "Noto Serif Thai", serif; letter-spacing: .12em; }
+
+    .paper-card {
+      background: linear-gradient(180deg, var(--parchment-light) 0%, var(--parchment) 100%);
+      border: 1px solid rgba(140, 109, 63, .55);
+      position: relative;
+      color: var(--ink);
+      box-shadow:
+        0 0 0 1px rgba(201, 162, 39, .35),
+        0 20px 44px rgba(4, 2, 8, .55),
+        inset 0 0 42px rgba(140, 109, 63, .10);
+    }
+    .paper-card::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background-image: radial-gradient(rgba(74, 52, 32, .07) 1px, transparent 1px);
+      background-size: 9px 9px;
+    }
+    .paper-card::after {
+      content: "✦"; position: absolute; bottom: 10px; right: 16px; z-index: 1;
+      color: var(--gold); opacity: .55; font-size: 13px; pointer-events: none;
+    }
+
+    /* Banner-scroll badges (fantasy quest-name plaques) */
+    .slanted-badge {
+      display: inline-flex; align-items: center; justify-content: center; position: relative;
+      background: linear-gradient(135deg, var(--wine-deep) 0%, var(--wine) 55%, var(--wine-light) 100%);
+      color: var(--gold-bright);
+      font-family: "Noto Serif Thai", serif;
+      padding: 0.6rem 2.8rem; font-weight: 700;
+      clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+      box-shadow: 0 0 0 1px rgba(201, 162, 39, .6), 0 8px 20px rgba(0, 0, 0, .45), 0 0 20px rgba(201, 162, 39, .28);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, .65);
+    }
+    .slanted-badge-bottom {
+      position: absolute; bottom: -6px; right: 12px; height: 9px; width: 55%;
+      background: var(--gold-dim); opacity: .85;
+      clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+      z-index: -1;
+    }
+
+    /* Quest medallions (quick-access circular buttons) */
+    .action-circle-card { transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .action-circle-card:hover { transform: translateY(-8px); }
+    .action-circle-card:hover .circle-icon-wrapper {
+      box-shadow: 0 0 0 3px var(--gold-bright), 0 0 32px rgba(242, 210, 114, .55), 0 16px 28px rgba(0, 0, 0, .5);
+      transform: scale(1.07);
+    }
+    .circle-icon-wrapper { position: relative; transition: all .35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .circle-icon-wrapper::before {
+      content: ""; position: absolute; inset: -7px; border-radius: 9999px; pointer-events: none;
+      border: 1px dashed rgba(201, 162, 39, .55);
+      animation: rune-spin 20s linear infinite;
+    }
+    @keyframes rune-spin { to { transform: rotate(360deg); } }
+
+    /* Enchanted-mirror carousel */
+    .carousel-slide { transition: opacity 0.45s ease-in-out; }
+
+    /* Gentle candle-glow pulse for the crest / brand mark */
+    .glow-pulse { animation: glow-pulse 3.4s ease-in-out infinite; }
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(201, 162, 39, .35), 0 0 0 1px var(--gold); }
+      50% { box-shadow: 0 0 22px rgba(242, 210, 114, .65), 0 0 0 1px var(--gold-bright); }
+    }
+
+    /* Drifting arcane mist */
+    .mist { animation: mist-drift 14s ease-in-out infinite alternate; }
+    @keyframes mist-drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(18px, -14px) scale(1.12); } }
+
+    /* Ambient floating sparkles + magical burst on interaction */
+    .rpg-particle-layer { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+    .rpg-particle {
+      position: absolute; bottom: -10px; opacity: 0; color: var(--gold-bright);
+      text-shadow: 0 0 6px rgba(242, 210, 114, .85);
+      animation-name: rpg-float; animation-timing-function: linear; animation-iteration-count: infinite;
+    }
+    @keyframes rpg-float {
+      0% { transform: translateY(0) translateX(0) scale(.6); opacity: 0; }
+      10% { opacity: .9; }
+      90% { opacity: .45; }
+      100% { transform: translateY(-108vh) translateX(var(--drift, 20px)) scale(1); opacity: 0; }
+    }
+    .rpg-burst-spark {
+      position: fixed; width: 6px; height: 6px; border-radius: 50%; pointer-events: none; z-index: 9999;
+      background: radial-gradient(circle, var(--gold-bright), var(--gold) 60%, transparent 72%);
+      animation: rpg-burst .6s ease-out forwards;
+    }
+    @keyframes rpg-burst { to { transform: translate(var(--bx), var(--by)) scale(0); opacity: 0; } }
+
+    .hall-backdrop { position: fixed; inset: 0; z-index: 0; opacity: .16; pointer-events: none; overflow: hidden; }
+    
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Chart Styles */
+    .org-chart-node {
+      background: linear-gradient(180deg, var(--parchment-light) 0%, var(--parchment) 100%);
+      border: 1px solid rgba(140, 109, 63, .8);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      color: var(--ink);
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(140, 109, 63, .1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .org-chart-node:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--gold-bright);
+    }
+    .org-chart-node::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background-image: radial-gradient(rgba(74, 52, 32, .05) 1px, transparent 1px);
+      background-size: 8px 8px;
+    }
+    
+    /* Connectors */
+    .org-tree ul {
+        padding-top: 20px; position: relative;
+        display: flex; justify-content: center;
+    }
+    .org-tree li {
+        float: left; text-align: center;
+        list-style-type: none;
+        position: relative;
+        padding: 20px 10px 0 10px;
+    }
+    /* We will use ::before and ::after to draw the connectors */
+    .org-tree li::before, .org-tree li::after{
+        content: '';
+        position: absolute; top: 0; right: 50%;
+        border-top: 2px solid var(--gold-dim);
+        width: 50%; height: 20px;
+    }
+    .org-tree li::after{
+        right: auto; left: 50%;
+        border-left: 2px solid var(--gold-dim);
+    }
+    /* We need to remove left-right connectors from elements without any siblings */
+    .org-tree li:only-child::after, .org-tree li:only-child::before {
+        display: none;
+    }
+    /* Remove space from the top of single children */
+    .org-tree li:only-child{ padding-top: 0;}
+    
+    /* Remove left connector from first child and right connector from last child */
+    .org-tree li:first-child::before, .org-tree li:last-child::after{
+        border: 0 none;
+    }
+    /* Adding back the vertical connector to the last nodes */
+    .org-tree li:last-child::before{
+        border-right: 2px solid var(--gold-dim);
+        border-radius: 0 5px 0 0;
+    }
+    .org-tree li:first-child::after{
+        border-radius: 5px 0 0 0;
+    }
+    
+    /* Time to add downward connectors from parents */
+    .org-tree ul ul::before{
+        content: '';
+        position: absolute; top: 0; left: 50%;
+        border-left: 2px solid var(--gold-dim);
+        width: 0; height: 20px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rpg-particle-layer { display: none; }
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+
+    @media print {
+      header, footer, button, .no-print, .rpg-particle-layer, .hall-backdrop { display: none !important; }
+      body { background: white !important; color: black !important; }
+      body::before { display: none !important; }
+      .paper-card { border: 1px solid #999 !important; box-shadow: none !important; color: #111 !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-[var(--gold)]/40 selection:text-[var(--ink)]">
+  <div class="hall-backdrop" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="skyGlow" cx="50%" cy="18%" r="55%">
+          <stop offset="0%" stop-color="#F2D272" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#F2D272" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="candleGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#F2D272" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#F2D272" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="archStroke" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#C9A227" stop-opacity=".6"/>
+          <stop offset="100%" stop-color="#C9A227" stop-opacity=".1"/>
+        </linearGradient>
+      </defs>
+
+      <!-- enchanted ceiling glow -->
+      <ellipse cx="800" cy="70" rx="720" ry="200" fill="url(#skyGlow)"/>
+      <g fill="#F2D272" opacity=".6">
+        <circle cx="260" cy="60" r="1.6"/><circle cx="340" cy="110" r="1.2"/><circle cx="430" cy="50" r="1.8"/>
+        <circle cx="520" cy="95" r="1.3"/><circle cx="610" cy="45" r="1.5"/><circle cx="700" cy="85" r="1.1"/>
+        <circle cx="800" cy="40" r="1.9"/><circle cx="900" cy="85" r="1.2"/><circle cx="990" cy="45" r="1.6"/>
+        <circle cx="1080" cy="95" r="1.3"/><circle cx="1170" cy="50" r="1.8"/><circle cx="1260" cy="110" r="1.2"/>
+        <circle cx="1340" cy="60" r="1.6"/>
+      </g>
+
+      <!-- receding gothic archways -->
+      <g fill="none" stroke="url(#archStroke)" stroke-width="2.5">
+        <path d="M40 900 L40 260 Q40 166 170 90 Q300 166 300 260 L300 900"/>
+        <path d="M1300 900 L1300 260 Q1300 166 1430 90 Q1560 166 1560 260 L1560 900"/>
+        <path d="M170 900 L170 300 Q170 223 275 160 Q380 223 380 300 L380 900"/>
+        <path d="M1220 900 L1220 300 Q1220 223 1325 160 Q1430 223 1430 300 L1430 900"/>
+        <path d="M290 900 L290 340 Q290 280 372 230 Q455 280 455 340 L455 900"/>
+        <path d="M1145 900 L1145 340 Q1145 280 1227 230 Q1310 280 1310 340 L1310 900"/>
+        <path d="M380 900 L380 370 Q380 323 442 285 Q505 323 505 370 L505 900"/>
+        <path d="M1095 900 L1095 370 Q1095 323 1157 285 Q1220 323 1220 370 L1220 900"/>
+      </g>
+
+      <!-- stone floor perspective -->
+      <g stroke="#C9A227" stroke-opacity=".22" stroke-width="1.4" fill="none">
+        <path d="M0 900 L800 400"/>
+        <path d="M1600 900 L800 400"/>
+        <path d="M300 900 L800 400"/>
+        <path d="M1300 900 L800 400"/>
+        <path d="M100 830 L1500 830"/>
+        <path d="M250 760 L1350 760"/>
+        <path d="M380 700 L1220 700"/>
+      </g>
+
+      <!-- floating candlelight down the aisle -->
+      <g fill="url(#candleGlow)">
+        <circle cx="800" cy="860" r="16"/>
+        <circle cx="760" cy="770" r="11"/>
+        <circle cx="840" cy="690" r="8"/>
+        <circle cx="795" cy="610" r="6"/>
+        <circle cx="815" cy="530" r="4"/>
+        <circle cx="800" cy="460" r="3"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Top Navigation Header (Game Menu Bar) -->
+  <header class="relative z-10 sticky top-0 z-40 border-b-2 border-[var(--gold)] bg-gradient-to-b from-[#2B2B33]/97 to-[#17171B]/98 backdrop-blur shadow-[0_4px_24px_rgba(0,0,0,.5)]">
+    <div class="flex w-full flex-wrap items-center justify-between gap-3 px-5 py-3.5 lg:px-8">
+      <div class="flex items-center gap-3">
+        <div class="glow-pulse h-10 w-10 rounded-xl bg-gradient-to-br from-[var(--purple-light)] to-[var(--wine-deep)] text-[var(--gold-bright)] flex items-center justify-center border border-[var(--gold)]">
+          <i data-lucide="wand-sparkles" class="h-5 w-5"></i>
+        </div>
+        <div>
+          <span class="block text-base font-bold leading-tight text-[var(--parchment-light)] tracking-tight serif-title">นางสาวศิริประภา สมบัติคำ</span>
+          <span class="block text-[11px] font-medium text-[var(--gold-dim)] rune-caption">รายงานการฝึกปฏิบัติงานสอน</span>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-1.5 overflow-x-auto">
+        <a href="index.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">หน้าหลัก</a>
+        <a href="school.html" class="whitespace-nowrap rounded-full bg-gradient-to-r from-[var(--wine)] to-[var(--wine-light)] px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--gold-bright)] shadow-[0_0_0_1px_var(--gold),0_0_14px_rgba(201,162,39,.3)] transition">สถานศึกษา</a>
+        <a href="Teaching.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">บันทึกการฝึกสอน</a>
+        <a href="TeachingPlan.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">แผนการสอน</a>
+        <a href="Schedule.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">ตารางสอน</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Full-screen hero banner -->
+  <section class="relative w-full overflow-hidden border-b-2 border-[var(--gold)]">
+    <img src="https://i.postimg.cc/65BVdWKc/d-sin-th-y-ngmi-di-t-ngch-x.png" alt="ป้ายวิทยาลัยเทคนิคสระบุรี" class="w-full h-[60vh] sm:h-[75vh] lg:h-screen object-cover">
+    <div class="pointer-events-none absolute inset-x-0 bottom-0 h-10 sm:h-14" style="background:linear-gradient(to top, rgba(10,10,12,0.85), rgba(10,10,12,0));"></div>
+  </section>
+
+  <!-- Contact info scroll -->
+  <section class="relative z-10 pt-10 sm:pt-14 pb-8 sm:pb-10">
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="paper-card relative rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[var(--gold)]/70 shadow-md overflow-hidden">
+
+        <!-- corner ornaments -->
+        <div class="absolute right-6 top-5 text-[var(--wine)]/70" style="animation:float-y 3.6s ease-in-out infinite;">
+          <i data-lucide="wand-sparkles" class="h-7 w-7 sm:h-9 sm:w-9"></i>
+        </div>
+        <div class="absolute left-6 bottom-5 text-[var(--gold-dim)]" style="animation:float-y 4s ease-in-out infinite; animation-delay:0.6s;">
+          <i data-lucide="feather" class="h-6 w-6 sm:h-7 sm:w-7"></i>
+        </div>
+        <div class="mist absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-[var(--ruby)]/15 blur-2xl pointer-events-none"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
+          
+          <!-- ข้อมูลที่อยู่ (ซ้าย) -->
+          <div class="lg:col-span-3 flex flex-col divide-y divide-dashed divide-[var(--gold-dim)]/50">
+
+          <!-- ที่อยู่ -->
+          <div class="flex flex-row flex-wrap items-center gap-3 sm:gap-4 py-4 sm:py-5">
+              <div class="flex items-center gap-3 shrink-0">
+                <div class="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#7C2222] text-[var(--parchment-light)] shadow-md shrink-0">
+                  <i data-lucide="map-pin" class="h-5 w-5 sm:h-6 sm:w-6 text-[var(--gold)]"></i>
+                </div>
+                <span class="rounded-full px-4 py-1.5 text-sm sm:text-base font-bold text-[#7C2222] whitespace-nowrap shrink-0" style="background:#F2C4A8;">ที่อยู่</span>
+              </div>
+              <p class="serif-title text-base sm:text-lg text-[var(--ink)] leading-relaxed outline-none text-left" spellcheck="false">424 ถ. พหลโยธิน ตำบล ปากเพรียว อำเภอเมืองสระบุรี สระบุรี 18000</p>
+            </div>
+
+            <!-- โทรศัพท์ -->
+            <div class="flex flex-row flex-wrap items-center gap-3 sm:gap-4 py-4 sm:py-5">
+              <div class="flex items-center gap-3 shrink-0">
+                <div class="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#1A4B65] text-[var(--parchment-light)] shadow-md shrink-0">
+                  <i data-lucide="phone" class="h-5 w-5 sm:h-6 sm:w-6 text-[var(--gold)]"></i>
+                </div>
+                <span class="rounded-full px-4 py-1.5 text-sm sm:text-base font-bold text-[#1A4B65] whitespace-nowrap shrink-0" style="background:#BBDCF0;">โทรศัพท์</span>
+              </div>
+              <p class="serif-title text-base sm:text-lg text-[var(--ink)] leading-relaxed outline-none text-left" spellcheck="false">036-220236 / 036-211122</p> 
+            </div>
+
+            <!-- อีเมล -->
+            <div class="flex flex-row flex-wrap items-center gap-3 sm:gap-4 py-4 sm:py-5">
+              <div class="flex items-center gap-3 shrink-0">
+                <div class="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#694291] text-[var(--parchment-light)] shadow-md shrink-0">
+                  <i data-lucide="mail" class="h-5 w-5 sm:h-6 sm:w-6 text-[var(--gold)]"></i>
+                </div>
+                <span class="rounded-full px-4 py-1.5 text-sm sm:text-base font-bold text-[#694291] whitespace-nowrap shrink-0" style="background:#DCC6E6;">อีเมล</span>
+              </div>
+              <p class="serif-title text-base sm:text-lg text-[var(--ink)] leading-relaxed outline-none text-left" spellcheck="false">saraburi03@sbt.ac.th</p>
+            </div>
+
+            <!-- เวลาทำการ -->
+          <div class="flex flex-row flex-wrap items-center gap-3 sm:gap-4 py-4 sm:py-5">
+            <div class="flex items-center gap-3 shrink-0">
+              <div class="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#A87B22] text-[var(--parchment-light)] shadow-md shrink-0">
+                <i data-lucide="clock" class="h-5 w-5 sm:h-6 sm:w-6 text-[var(--gold)]"></i>
+              </div>
+              <span class="rounded-full px-4 py-1.5 text-sm sm:text-base font-bold text-[#A87B22] whitespace-nowrap shrink-0" style="background:#EFDCA0;">เวลาทำการ</span>
+            </div>
+            <p class="serif-title text-base sm:text-lg text-[var(--ink)] leading-relaxed outline-none text-left" spellcheck="false">วันจันทร์ - ศุกร์ : 08:00 - 16:30 น.</p>
+          </div>
+
+          </div>
+
+          <!-- แผนที่สถานศึกษา (ขวา) แทนที่รูปภาพ -->
+          <div class="lg:col-span-2 flex items-stretch justify-center">
+            <div class="relative flex w-full min-h-[300px] sm:min-h-[350px] lg:min-h-0 flex-col rounded-2xl border-2 border-[var(--gold)]/60 bg-[var(--void)] p-1.5 shadow-[inset_0_0_30px_rgba(0,0,0,.6),0_0_22px_rgba(201,162,39,.15)] overflow-hidden">
+              <div class="relative w-full h-full rounded-xl overflow-hidden group">
+                <!-- ป้ายระบุบนแผนที่ -->
+                <div class="absolute top-3 right-3 z-10 flex items-center gap-2 rounded-full px-3 py-1.5 text-xs sm:text-sm font-bold shadow-[0_2px_10px_rgba(0,0,0,0.5)] pointer-events-none border border-[var(--gold)]/50 bg-[var(--void2)]/80 text-[var(--gold-bright)] backdrop-blur-md">
+                  <i data-lucide="map-pinned" class="h-4 w-4"></i>
+                  แผนที่วิทยาลัย
+                </div>
+                <!-- Google Maps iframe -->
+                <iframe src="https://maps.google.com/maps?q=วิทยาลัยเทคนิคสระบุรี&t=&z=16&ie=UTF8&iwloc=&output=embed" class="absolute inset-0 w-full h-full min-h-[300px]" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="แผนที่วิทยาลัยเทคนิคสระบุรี"></iframe>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Organization Chart Section -->
+  <section class="relative z-10 py-10 sm:py-16">
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-10 flex justify-center">
+        <div class="relative inline-block">
+          <div class="slanted-badge text-xl sm:text-2xl tracking-wide font-bold py-2.5 px-10 inline-flex items-center gap-3">
+            <i data-lucide="network" class="h-5 w-5 opacity-80"></i>
+            <span>แผนผังองค์กร</span>
+          </div>
+          <div class="slanted-badge-bottom"></div>
+        </div>
+      </div>
+
+      <!-- Organizational Chart Container -->
+      <div class="bg-[var(--void2)]/80 backdrop-blur-sm border-2 border-[var(--gold)]/50 rounded-3xl p-6 sm:p-10 shadow-2xl overflow-x-auto relative">
+        <!-- Decoration -->
+        <div class="absolute top-4 left-4 text-[var(--gold)]/40"><i data-lucide="sparkle" class="w-6 h-6"></i></div>
+        <div class="absolute bottom-4 right-4 text-[var(--gold)]/40"><i data-lucide="sparkle" class="w-6 h-6"></i></div>
+        
+        <!-- The Tree -->
+        <div class="org-tree min-w-[900px] flex justify-center font-serif serif-title">
+          <ul>
+            <li>
+              <!-- Director -->
+              <div class="org-chart-node mx-auto w-64 border-2 border-[var(--gold-bright)]">
+                <!-- Image Slot (ปรับเป็นสี่เหลี่ยมสัดส่วนรูปติดบัตร) -->
+                <div class="mx-auto mb-4 w-24 aspect-[3/4] overflow-hidden rounded-md border-2 border-[var(--gold)] bg-[var(--parchment-dark)] shadow-sm">
+                  <img src="https://i.postimg.cc/XYmyD3Rg/27dd102e-f38b-417c-80b9-785e736ba280.png" alt="นายเจนวิทย์ ตั้งเจริญวรคุณ" class="h-full w-full object-cover">
+                </div>
+                <div class="font-bold text-lg text-[#7C2222]">ผู้อำนวยการ</div>
+                <div class="mt-2 h-px w-full bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent"></div>
+                <div class="mt-2 text-sm text-[var(--ink)] font-semibold">นายเจนวิทย์ ตั้งเจริญวรคุณ</div>
+              </div>
+              
+              <ul>
+                <!-- Deputy Directors -->
+                <li>
+                  <div class="org-chart-node mx-auto w-52">
+                    <!-- Image Slot -->
+                    <div class="mx-auto mb-3 w-20 aspect-[3/4] overflow-hidden rounded-md border-2 border-[var(--gold-dim)] bg-[var(--parchment-dark)] shadow-sm">
+                      <img src="https://i.postimg.cc/gJqXJhxp/61e43c8a-558d-4dff-a8e1-627fc69170e6.png" alt="นายกุญช์พิสิฏฐ์ เขาทองธนาวัฒน์" class="h-full w-full object-cover">
+                    </div>
+                    <div class="font-bold text-[var(--wine)]">รองผู้อำนวยการ<br>ฝ่ายวิชาการ</div>
+                     <div class="mt-2 h-px w-full bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent"></div>
+                    <div class="mt-1 text-xs text-[var(--ink-soft)] font-semibold">นายกุญช์พิสิฏฐ์ เขาทองธนาวัฒน์</div>
+                  </div>
+                </li>
+                
+                <li>
+                  <div class="org-chart-node mx-auto w-52">
+                    <!-- Image Slot -->
+                    <div class="mx-auto mb-3 w-20 aspect-[3/4] overflow-hidden rounded-md border-2 border-[var(--gold-dim)] bg-[var(--parchment-dark)] shadow-sm">
+                      <img src="https://i.postimg.cc/3r10QgM8/862af81a-15f9-47d4-9388-15c9320fe191.png" alt="นายวรดร ทิพย์ศรี" class="h-full w-full object-cover">
+                    </div>
+                    <div class="font-bold text-[var(--wine)]">รองผู้อำนวยการ<br>ฝ่ายกิจการนักเรียน</div>
+                     <div class="mt-2 h-px w-full bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent"></div>
+                    <div class="mt-1 text-xs text-[var(--ink-soft)] font-semibold">นายวรดร ทิพย์ศรี</div>
+                  </div>
+                </li>
+                
+                <li>
+                  <div class="org-chart-node mx-auto w-52">
+                    <!-- Image Slot -->
+                    <div class="mx-auto mb-3 w-20 aspect-[3/4] overflow-hidden rounded-md border-2 border-[var(--gold-dim)] bg-[var(--parchment-dark)] shadow-sm">
+                      <img src="https://i.postimg.cc/3w2WSGC3/a98d9a37-15a4-49b3-b1c5-38395d673222.png" alt="นายครินทร์ เจริญมี" class="h-full w-full object-cover">
+                    </div>
+                    <div class="font-bold text-[var(--wine)]">รองผู้อำนวยการ<br>ฝ่ายยุทธศาสตร์</div>
+                    <div class="mt-1 h-px w-full bg-gradient-to-r from-transparent via-[var(--gold-dim)] to-transparent"></div>
+                    <div class="mt-1 text-xs text-[var(--ink-soft)] font-semibold">นายครินทร์ เจริญมี</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="org-chart-node mx-auto w-52">
+                    <!-- Image Slot -->
+                    <div class="mx-auto mb-3 w-20 aspect-[3/4] overflow-hidden rounded-md border-2 border-[var(--gold-dim)] bg-[var(--parchment-dark)] shadow-sm">
+                      <img src="https://i.postimg.cc/SR1K2fqd/edf7d495-35e9-4c74-bba2-a21dd628cfeb.png" alt="นางสาวทัศน์วรรณ์ หอมผล" class="h-full w-full object-cover">
+                    </div>
+                    <div class="font-bold text-[var(--wine)]">รองผู้อำนวยการ<br>ฝ่ายบริหารทรัพยากร</div>
+                    <div class="mt-1 h-px w-full bg-gradient-to-r from-transparent via-[var(--gold-dim)] to-transparent"></div>
+                    <div class="mt-1 text-xs text-[var(--ink-soft)] font-semibold">นางสาวทัศน์วรรณ์ หอมผล</div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Department Teachers Section -->
+  <section class="relative z-10 py-10 sm:py-12">
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-10 flex justify-center">
+        <div class="relative inline-block">
+          <div class="slanted-badge text-xl sm:text-2xl tracking-wide font-bold py-2.5 px-8 sm:px-12 inline-flex items-center gap-3">
+            <i data-lucide="users" class="h-5 w-5 opacity-80"></i>
+            <span>อาจารย์ประจำสาขาเทคโนโลยีธุรกิจดิจิทัล</span>
+          </div>
+          <div class="slanted-badge-bottom"></div>
+        </div>
+      </div>
+
+      <!-- Teachers Grid Container -->
+      <div class="bg-[var(--void2)]/80 backdrop-blur-sm border-2 border-[var(--gold)]/50 rounded-3xl p-6 sm:p-10 shadow-2xl relative">
+        <!-- Decoration -->
+        <div class="absolute top-4 left-4 text-[var(--gold)]/40"><i data-lucide="sparkle" class="w-6 h-6"></i></div>
+        <div class="absolute bottom-4 right-4 text-[var(--gold)]/40"><i data-lucide="sparkle" class="w-6 h-6"></i></div>
+        
+        <div class="org-tree flex justify-center font-serif serif-title overflow-x-auto min-w-full pb-6 hide-scrollbar">
+          <ul>
+            <li>
+              <!-- Head of Department -->
+              <div class="org-chart-node mx-auto w-full min-w-[220px] max-w-[240px] border-2 border-[var(--gold-bright)]">
+                <div class="mx-auto mb-4 w-24 aspect-[3/4] overflow-hidden rounded-md border-2 border-[var(--gold)] bg-[var(--parchment-dark)] shadow-sm">
+                  <img src="https://i.postimg.cc/MTd6NmnL/24fdf948-e846-42a3-b1fa-e1f770a426e2.png" alt="หัวหน้าแผนกวิชา" class="h-full w-full object-cover">
+                </div>
+                <div class="font-bold text-lg text-[#1A4B65]">หัวหน้าแผนกวิชา</div>
+                <div class="mt-2 h-px w-full bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent"></div>
+                <div class="mt-2 text-sm text-[var(--ink)] font-semibold">อาจารย์นิตยา ดกกลาง</div>
+              </div>
+              
+              <ul>
+                <li>
+                  <!-- Teacher 1 -->
+                  <div class="org-chart-node mx-auto w-full min-w-[200px] max-w-[240px]">
+                    <div class="mx-auto mb-4 w-24 aspect-[3/4] overflow-hidden rounded-md border-2 border-[var(--gold-dim)] bg-[var(--parchment-dark)] shadow-sm">
+                      <img src="https://i.postimg.cc/GpxSxMNR/dbc8d108-b030-4d38-bfd2-fea2547cfafb.png" alt="ครูประจำวิชา" class="h-full w-full object-cover">
+                    </div>
+                    <div class="font-bold text-[var(--wine)]">อาจารย์ประจำสาขา</div>
+                    <div class="mt-2 h-px w-full bg-gradient-to-r from-transparent via-[var(--gold-dim)] to-transparent"></div>
+                    <div class="mt-2 text-sm text-[var(--ink-soft)] font-semibold">อาจารย์สายใจ พานิชกุล</div>
+                  </div>
+                </li>
+                <li>
+                  <!-- Teacher 2 -->
+                  <div class="org-chart-node mx-auto w-full min-w-[200px] max-w-[240px]">
+                    <div class="mx-auto mb-4 w-24 aspect-[3/4] overflow-hidden rounded-md border-2 border-[var(--gold-dim)] bg-[var(--parchment-dark)] shadow-sm">
+                      <img src="https://i.postimg.cc/tJ8jGS9G/21fc2d59-4086-4159-88e9-8ed5d4cd2e1b.png" alt="ครูประจำวิชา" class="h-full w-full object-cover">
+                    </div>
+                    <div class="font-bold text-[var(--wine)]">อาจารย์ประจำสาขา</div>
+                    <div class="mt-2 h-px w-full bg-gradient-to-r from-transparent via-[var(--gold-dim)] to-transparent"></div>
+                    <div class="mt-2 text-sm text-[var(--ink-soft)] font-semibold">อาจารย์ประสาน อรุณศรีสุขสันต์</div>
+                  </div>
+                </li>
+                <li>
+                  <!-- Teacher 3 -->
+                  <div class="org-chart-node mx-auto w-full min-w-[200px] max-w-[240px]">
+                    <div class="mx-auto mb-4 w-24 aspect-[3/4] overflow-hidden rounded-md border-2 border-[var(--gold-dim)] bg-[var(--parchment-dark)] shadow-sm">
+                      <img src="https://i.postimg.cc/cJdNW8Gn/6261399b-e12d-4591-91ba-bee3a729e803.png" alt="ครูประจำวิชา" class="h-full w-full object-cover">
+                    </div>
+                    <div class="font-bold text-[var(--wine)]">อาจารย์ประจำสาขา</div>
+                    <div class="mt-2 h-px w-full bg-gradient-to-r from-transparent via-[var(--gold-dim)] to-transparent"></div>
+                    <div class="mt-2 text-sm text-[var(--ink-soft)] font-semibold">อาจารย์กิตติชัย ทองดี</div>
+                  </div>
+                </li>
+                <li>
+                  <!-- Teacher 4 (Mentor) -->
+                  <div class="org-chart-node mx-auto w-full min-w-[200px] max-w-[240px]">
+                    <div class="mx-auto mb-4 w-24 aspect-[3/4] overflow-hidden rounded-md border-2 border-[var(--gold-dim)] bg-[var(--parchment-dark)] shadow-sm">
+                      <img src="https://i.postimg.cc/NGKFSZ4v/e420c163-74ec-4a03-937a-c9a78c966805.png" alt="อาจารย์สายใจ พานิชกุล" class="h-full w-full object-cover object-top">
+                    </div>
+                    <div class="font-bold text-[var(--wine)]">อาจารย์ประจำสาขา<br></div>
+                    <div class="mt-2 h-px w-full bg-gradient-to-r from-transparent via-[var(--gold-dim)] to-transparent"></div>
+                    <div class="mt-2 text-sm text-[var(--ink-soft)] font-semibold">อาจารย์จณิสตา พิมพาทอง</div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative z-10 mt-10 border-t-2 border-[var(--gold)] bg-gradient-to-b from-[#17171B]/97 to-[#0A0A0C]/98">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-center text-center">
+      <p class="text-xs sm:text-sm text-[var(--gold-dim)] font-medium">
+        © 2026 รายงานการฝึกปฏิบัติงานสอน | นางสาวศิริประภา สมบัติคำ ภาควิชาคอมพิวเตอร์ศึกษา คณะครุศาสตร์อุตสาหกรรม มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    if (window.lucide) { lucide.createIcons(); }
+
+    // --- Image Carousel Logic ---
+    function initCarousel(slideSelector, dotsContainerId, prevId, nextId) {
+      const slides = Array.from(document.querySelectorAll(slideSelector));
+      const dotsContainer = document.getElementById(dotsContainerId);
+      const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.dot-btn')) : [];
+      const prevBtn = document.getElementById(prevId);
+      const nextBtn = document.getElementById(nextId);
+      if (!slides.length) return;
+
+      let current = 0;
+
+      function render() {
+        slides.forEach((slide, i) => {
+          slide.style.opacity = i === current ? '1' : '0';
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('bg-[var(--gold)]', i === current);
+          dot.classList.toggle('bg-[var(--gold-dim)]/40', i !== current);
+        });
+      }
+
+      function goTo(index) {
+        current = (index + slides.length) % slides.length;
+        render();
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => goTo(current - 1));
+      nextBtn && nextBtn.addEventListener('click', () => goTo(current + 1));
+      dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+      render();
+    }
+
+    // Initialize school photo carousel (Keep just in case it's used elsewhere, otherwise safe)
+    initCarousel('.school-slide', 'school-dots', 'school-prev', 'school-next');
+
+    // --- Fantasy ambience: floating sparkles + magical burst on click ---
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce) {
+        var layer = document.createElement('div');
+        layer.className = 'rpg-particle-layer';
+        document.body.appendChild(layer);
+        var glyphs = ['✦', '✧', '✶', '•'];
+        for (var i = 0; i < 14; i++) {
+          var p = document.createElement('span');
+          p.className = 'rpg-particle';
+          p.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+          p.style.left = Math.random() * 100 + 'vw';
+          p.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+          p.style.animationDuration = (10 + Math.random() * 12) + 's';
+          p.style.animationDelay = (Math.random() * 14) + 's';
+          p.style.fontSize = (8 + Math.random() * 8) + 'px';
+          layer.appendChild(p);
+        }
+      }
+
+      document.addEventListener('click', function (e) {
+        if (reduce) return;
+        var target = e.target.closest('a, button');
+        if (!target) return;
+        var rect = target.getBoundingClientRect();
+        var cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+        for (var i = 0; i < 8; i++) {
+          var s = document.createElement('span');
+          s.className = 'rpg-burst-spark';
+          var angle = (Math.PI * 2 * i) / 8 + Math.random() * 0.3;
+          var dist = 30 + Math.random() * 20;
+          s.style.setProperty('--bx', Math.cos(angle) * dist + 'px');
+          s.style.setProperty('--by', Math.sin(angle) * dist + 'px');
+          s.style.left = cx + 'px';
+          s.style.top = cy + 'px';
+          document.body.appendChild(s);
+          (function (el) { setTimeout(function () { el.remove(); }, 650); })(s);
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>

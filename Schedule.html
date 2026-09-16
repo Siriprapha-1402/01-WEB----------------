@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รายงานการฝึกปฏิบัติงานสอน | ตารางสอน</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: fantasy-book serif for Thai display, Cinzel for engraved Latin labels -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&family=Noto+Serif+Thai:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            arcane: {
+              void: '#0A0A0C',
+              purple: '#2B2B33',
+              purpleLight: '#3F3F4D',
+              wine: '#6B0F1A',
+              wineLight: '#8C1C28',
+              wineDeep: '#3D0710',
+              gold: '#C9A227',
+              goldBright: '#F2D272',
+              goldDim: '#8C6D3F',
+              parchment: '#E8D6A8',
+              parchmentLight: '#F4E8C4',
+              parchmentDark: '#CBAA72',
+              ink: '#231409'
+            }
+          },
+          fontFamily: {
+            serif: ['"Noto Serif Thai"', '"Libre Baskerville"', 'serif'],
+            rune: ['"Cinzel"', 'serif'],
+            sans: ['"Sarabun"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --void: #0A0A0C; --void2: #17171B;
+      --purple: #2B2B33; --purple-light: #3F3F4D;
+      --wine: #6B0F1A; --wine-light: #8C1C28; --wine-deep: #3D0710;
+      --gold: #C9A227; --gold-bright: #F2D272; --gold-dim: #8C6D3F;
+      --parchment: #E8D6A8; --parchment-light: #F4E8C4; --parchment-dark: #CBAA72;
+      --ink: #231409; --ink-soft: #4A3420;
+      --emerald: #1F5C4A; --emerald-light: #2E8067;
+      --ruby: #6B0F22; --ruby-light: #9A1B34;
+      --topaz: #8A5A12; --topaz-light: #C68A22;
+    }
+    * { box-sizing: border-box; }
+
+    body {
+      color: var(--parchment-light);
+      font-family: "Sarabun", "Noto Serif Thai", sans-serif;
+      background:
+        radial-gradient(ellipse 900px 600px at 12% -8%, rgba(107, 15, 26, .3), transparent 60%),
+        radial-gradient(ellipse 900px 700px at 88% 108%, rgba(60, 60, 70, .4), transparent 60%),
+        radial-gradient(circle at 50% 28%, #1c1028 0%, #0c0714 58%, #060309 100%);
+      background-attachment: fixed;
+      position: relative;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(233, 214, 168, .05) 0.8px, transparent 0.8px);
+      background-size: 14px 14px;
+    }
+
+    .serif-title { font-family: "Noto Serif Thai", "Libre Baskerville", serif; }
+    .rune-caption { font-family: "Cinzel", "Noto Serif Thai", serif; letter-spacing: .12em; }
+
+    .paper-card {
+      background: linear-gradient(180deg, var(--parchment-light) 0%, var(--parchment) 100%);
+      border: 1px solid rgba(140, 109, 63, .55);
+      position: relative;
+      color: var(--ink);
+      box-shadow:
+        0 0 0 1px rgba(201, 162, 39, .35),
+        0 20px 44px rgba(4, 2, 8, .55),
+        inset 0 0 42px rgba(140, 109, 63, .10);
+    }
+    .paper-card::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background-image: radial-gradient(rgba(74, 52, 32, .07) 1px, transparent 1px);
+      background-size: 9px 9px;
+    }
+
+    /* Banner-scroll badges (fantasy quest-name plaques) */
+    .slanted-badge {
+      display: inline-flex; align-items: center; justify-content: center; position: relative;
+      background: linear-gradient(135deg, var(--wine-deep) 0%, var(--wine) 55%, var(--wine-light) 100%);
+      color: var(--gold-bright);
+      font-family: "Noto Serif Thai", serif;
+      padding: 0.6rem 2.8rem; font-weight: 700;
+      clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+      box-shadow: 0 0 0 1px rgba(201, 162, 39, .6), 0 8px 20px rgba(0, 0, 0, .45), 0 0 20px rgba(201, 162, 39, .28);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, .65);
+    }
+    .slanted-badge-bottom {
+      position: absolute; bottom: -6px; right: 12px; height: 9px; width: 55%;
+      background: var(--gold-dim); opacity: .85;
+      clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+      z-index: -1;
+    }
+
+    /* Gentle candle-glow pulse for the crest / brand mark */
+    .glow-pulse { animation: glow-pulse 3.4s ease-in-out infinite; }
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(201, 162, 39, .35), 0 0 0 1px var(--gold); }
+      50% { box-shadow: 0 0 22px rgba(242, 210, 114, .65), 0 0 0 1px var(--gold-bright); }
+    }
+
+    /* Ambient floating sparkles + magical burst on interaction */
+    .rpg-particle-layer { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+    .rpg-particle {
+      position: absolute; bottom: -10px; opacity: 0; color: var(--gold-bright);
+      text-shadow: 0 0 6px rgba(242, 210, 114, .85);
+      animation-name: rpg-float; animation-timing-function: linear; animation-iteration-count: infinite;
+    }
+    @keyframes rpg-float {
+      0% { transform: translateY(0) translateX(0) scale(.6); opacity: 0; }
+      10% { opacity: .9; }
+      90% { opacity: .45; }
+      100% { transform: translateY(-108vh) translateX(var(--drift, 20px)) scale(1); opacity: 0; }
+    }
+    .rpg-burst-spark {
+      position: fixed; width: 6px; height: 6px; border-radius: 50%; pointer-events: none; z-index: 9999;
+      background: radial-gradient(circle, var(--gold-bright), var(--gold) 60%, transparent 72%);
+      animation: rpg-burst .6s ease-out forwards;
+    }
+    @keyframes rpg-burst { to { transform: translate(var(--bx), var(--by)) scale(0); opacity: 0; } }
+
+    .hall-backdrop { position: fixed; inset: 0; z-index: 0; opacity: .16; pointer-events: none; overflow: hidden; }
+    @media (prefers-reduced-motion: reduce) {
+      .rpg-particle-layer { display: none; }
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+
+    /* Custom scrollbar for inner container */
+    .custom-scrollbar::-webkit-scrollbar { height: 8px; width: 8px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: var(--parchment-light); border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-[var(--gold)]/40 selection:text-[var(--ink)]">
+  <div class="hall-backdrop" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="skyGlow" cx="50%" cy="18%" r="55%">
+          <stop offset="0%" stop-color="#F2D272" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#F2D272" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="candleGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#F2D272" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#F2D272" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="archStroke" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#C9A227" stop-opacity=".6"/>
+          <stop offset="100%" stop-color="#C9A227" stop-opacity=".1"/>
+        </linearGradient>
+      </defs>
+      <!-- enchanted ceiling glow -->
+      <ellipse cx="800" cy="70" rx="720" ry="200" fill="url(#skyGlow)"/>
+      <g fill="#F2D272" opacity=".6">
+        <circle cx="260" cy="60" r="1.6"/><circle cx="340" cy="110" r="1.2"/><circle cx="430" cy="50" r="1.8"/>
+        <circle cx="520" cy="95" r="1.3"/><circle cx="610" cy="45" r="1.5"/><circle cx="700" cy="85" r="1.1"/>
+        <circle cx="800" cy="40" r="1.9"/><circle cx="900" cy="85" r="1.2"/><circle cx="990" cy="45" r="1.6"/>
+        <circle cx="1080" cy="95" r="1.3"/><circle cx="1170" cy="50" r="1.8"/><circle cx="1260" cy="110" r="1.2"/>
+        <circle cx="1340" cy="60" r="1.6"/>
+      </g>
+      <!-- receding gothic archways -->
+      <g fill="none" stroke="url(#archStroke)" stroke-width="2.5">
+        <path d="M40 900 L40 260 Q40 166 170 90 Q300 166 300 260 L300 900"/>
+        <path d="M1300 900 L1300 260 Q1300 166 1430 90 Q1560 166 1560 260 L1560 900"/>
+        <path d="M170 900 L170 300 Q170 223 275 160 Q380 223 380 300 L380 900"/>
+        <path d="M1220 900 L1220 300 Q1220 223 1325 160 Q1430 223 1430 300 L1430 900"/>
+        <path d="M290 900 L290 340 Q290 280 372 230 Q455 280 455 340 L455 900"/>
+        <path d="M1145 900 L1145 340 Q1145 280 1227 230 Q1310 280 1310 340 L1310 900"/>
+        <path d="M380 900 L380 370 Q380 323 442 285 Q505 323 505 370 L505 900"/>
+        <path d="M1095 900 L1095 370 Q1095 323 1157 285 Q1220 323 1220 370 L1220 900"/>
+      </g>
+      <!-- stone floor perspective -->
+      <g stroke="#C9A227" stroke-opacity=".22" stroke-width="1.4" fill="none">
+        <path d="M0 900 L800 400"/>
+        <path d="M1600 900 L800 400"/>
+        <path d="M300 900 L800 400"/>
+        <path d="M1300 900 L800 400"/>
+        <path d="M100 830 L1500 830"/>
+        <path d="M250 760 L1350 760"/>
+        <path d="M380 700 L1220 700"/>
+      </g>
+      <!-- floating candlelight down the aisle -->
+      <g fill="url(#candleGlow)">
+        <circle cx="800" cy="860" r="16"/>
+        <circle cx="760" cy="770" r="11"/>
+        <circle cx="840" cy="690" r="8"/>
+        <circle cx="795" cy="610" r="6"/>
+        <circle cx="815" cy="530" r="4"/>
+        <circle cx="800" cy="460" r="3"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Top Navigation Header (Game Menu Bar) -->
+  <header class="relative z-10 sticky top-0 z-40 border-b-2 border-[var(--gold)] bg-gradient-to-b from-[#2B2B33]/97 to-[#17171B]/98 backdrop-blur shadow-[0_4px_24px_rgba(0,0,0,.5)]">
+    <div class="flex w-full flex-wrap items-center justify-between gap-3 px-5 py-3.5 lg:px-8">
+      <div class="flex items-center gap-3">
+        <div class="glow-pulse h-10 w-10 rounded-xl bg-gradient-to-br from-[var(--purple-light)] to-[var(--wine-deep)] text-[var(--gold-bright)] flex items-center justify-center border border-[var(--gold)]">
+          <i data-lucide="wand-sparkles" class="h-5 w-5"></i>
+        </div>
+        <div>
+          <span class="block text-base font-bold leading-tight text-[var(--parchment-light)] tracking-tight serif-title">นางสาวศิริประภา สมบัติคำ</span>
+          <span class="block text-[11px] font-medium text-[var(--gold-dim)] rune-caption">รายงานการฝึกปฏิบัติงานสอน</span>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-1.5 overflow-x-auto">
+        <a href="index.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">หน้าหลัก</a>
+        <a href="school.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">สถานศึกษา</a>
+        <a href="Teaching.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">บันทึกการฝึกสอน</a>
+        <a href="TeachingPlan.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">แผนการสอน</a>
+        <a href="Schedule.html" class="whitespace-nowrap rounded-full bg-gradient-to-r from-[var(--wine)] to-[var(--wine-light)] px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--gold-bright)] shadow-[0_0_0_1px_var(--gold),0_0_14px_rgba(201,162,39,.3)] transition">ตารางสอน</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="relative z-10 flex-grow py-8 sm:py-12">
+    <!-- ปรับความกว้างจาก max-w-5xl เป็น max-w-7xl เพื่อให้เต็มพื้นที่หน้าจอมากขึ้น -->
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <!-- macOS-style Magic Windows Layout -->
+      <div class="flex flex-col gap-6">
+
+        <!-- Block 1: Header / Config Window + Image Viewer -->
+        <div class="paper-card rounded-2xl border-2 border-[var(--gold)]/60 shadow-xl overflow-hidden relative group flex flex-col">
+
+          <!-- Body - Top Section (Info and Button) -->
+          <div class="p-6 sm:p-10 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
+            <!-- Left Info -->
+            <div class="flex flex-col gap-2">
+               <div class="flex items-center gap-2 text-[var(--wine)] font-semibold text-sm">
+                 <i data-lucide="calendar-days" class="h-4 w-4"></i>
+                 <span>ตารางสอนวิทยาลัยเทคนิคสระบุรี</span>
+               </div>
+               <h2 class="serif-title text-2xl sm:text-3xl font-extrabold text-[var(--ink)] mt-1">ภาคเรียนที่ 1/2569</h2>
+               
+               <p class="text-[var(--ink)] font-medium text-sm sm:text-base mt-2">
+                 ผู้สอน: นางสาวศิริประภา สมบัติคำ
+               </p>
+               <p class="text-[var(--wine)] font-bold text-sm sm:text-base">
+                 รหัสวิชา 21910-2003 วิชาองค์ประกอบศิลป์สำหรับงานกราฟิก
+               </p>
+               <p class="text-[var(--wine)] font-bold text-sm sm:text-base">
+                 รหัสวิชา 31910-0002 วิชาองค์ประกอบศิลป์สำหรับงานกราฟิก
+               </p>
+            </div>
+
+            <!-- Right Action Button -->
+            <!-- ใส่ Link PDF จริงตรง href="#" -->
+            <a href="https://drive.google.com/file/d/1h3Hooepf1rHEXDGSUrJEVPbZ5zvdNfHk/view?usp=sharing" target="_blank" class="shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#2B2B33] to-[#1A1A24] px-6 py-3.5 text-sm font-semibold text-[var(--gold-bright)] shadow-[0_0_0_1px_var(--gold),0_4px_16px_rgba(0,0,0,.4)] hover:shadow-[0_0_0_1px_var(--gold-bright),0_6px_20px_rgba(201,162,39,.5)] hover:-translate-y-1 transition-all duration-300">
+              <i data-lucide="file-text" class="h-4 w-4"></i>
+              เปิดไฟล์ตารางสอน (PDF)
+            </a>
+          </div>
+
+          <!-- Body - Bottom Section (Image Container) -->
+          <div class="p-6 sm:px-10 sm:pb-10 pt-0 flex-grow flex justify-center w-full">
+            <!-- ปรับให้ไม่มีความสูงตายตัว เพื่อให้กรอบพอดีกับรูปภาพ -->
+            <div class="w-full rounded-xl overflow-hidden shadow-inner border border-[var(--gold-dim)]/40 relative bg-[var(--parchment-light)]">
+              
+              <!-- ภาพตารางสอน -->
+              <img src="https://i.postimg.cc/0QTsLX8h/Screenshot-2026-09-09-081728.png" 
+                   alt="รูปภาพตารางสอนวิทยาลัยเทคนิคสระบุรี" 
+                   class="w-full h-auto block z-10"
+                   onerror="this.onerror=null; this.src='https://placehold.co/1200x800/E8D6A8/231409?font=noto-sans&text=Schedule+Image+Placeholder\n(Please+Update+Image+Src)'">
+                   
+            </div>
+          </div>
+          
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 mt-10 border-t-2 border-[var(--gold)] bg-gradient-to-b from-[#17171B]/97 to-[#0A0A0C]/98">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-center text-center">
+      <p class="text-xs sm:text-sm text-[var(--gold-dim)] font-medium">
+        © 2026 รายงานการฝึกปฏิบัติงานสอน | นางสาวศิริประภา สมบัติคำ ภาควิชาคอมพิวเตอร์ศึกษา คณะครุศาสตร์อุตสาหกรรม มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    if (window.lucide) { lucide.createIcons(); }
+
+    // --- Fantasy ambience: floating sparkles + magical burst on click ---
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce) {
+        var layer = document.createElement('div');
+        layer.className = 'rpg-particle-layer';
+        document.body.appendChild(layer);
+        var glyphs = ['✦', '✧', '✶', '•'];
+        for (var i = 0; i < 14; i++) {
+          var p = document.createElement('span');
+          p.className = 'rpg-particle';
+          p.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+          p.style.left = Math.random() * 100 + 'vw';
+          p.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+          p.style.animationDuration = (10 + Math.random() * 12) + 's';
+          p.style.animationDelay = (Math.random() * 14) + 's';
+          p.style.fontSize = (8 + Math.random() * 8) + 'px';
+          layer.appendChild(p);
+        }
+      }
+
+      document.addEventListener('click', function (e) {
+        if (reduce) return;
+        var target = e.target.closest('a, button');
+        if (!target) return;
+        var rect = target.getBoundingClientRect();
+        var cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+        for (var i = 0; i < 8; i++) {
+          var s = document.createElement('span');
+          s.className = 'rpg-burst-spark';
+          var angle = (Math.PI * 2 * i) / 8 + Math.random() * 0.3;
+          var dist = 30 + Math.random() * 20;
+          s.style.setProperty('--bx', Math.cos(angle) * dist + 'px');
+          s.style.setProperty('--by', Math.sin(angle) * dist + 'px');
+          s.style.left = cx + 'px';
+          s.style.top = cy + 'px';
+          document.body.appendChild(s);
+          (function (el) { setTimeout(function () { el.remove(); }, 650); })(s);
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
