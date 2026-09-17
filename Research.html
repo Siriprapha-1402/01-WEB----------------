@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>รายงานการฝึกปฏิบัติงานสอน | แผนการสอน</title>
+  <title>รายงานการฝึกปฏิบัติงานสอน | วิจัยในชั้นเรียน</title>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -118,6 +118,12 @@
     @keyframes rpg-burst { to { transform: translate(var(--bx), var(--by)) scale(0); opacity: 0; } }
 
     .hall-backdrop { position: fixed; inset: 0; z-index: 0; opacity: .16; pointer-events: none; overflow: hidden; }
+
+    .stat-chip {
+      background: linear-gradient(180deg, rgba(201,162,39,.14), rgba(201,162,39,.04));
+      border: 1px solid rgba(201,162,39,.45);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .rpg-particle-layer { display: none; }
       *, *::before, *::after {
@@ -136,7 +142,7 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-[var(--gold)]/40 selection:text-[var(--ink)]">
-  
+
   <div class="hall-backdrop" aria-hidden="true">
     <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -208,51 +214,57 @@
       </div>
 
       <nav class="flex items-center gap-1.5 overflow-x-auto">
-        <a href="index.html" class="whitespace-nowrap rounded-full bg-gradient-to-r from-[var(--wine)] to-[var(--wine-light)] px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--gold-bright)] shadow-[0_0_0_1px_var(--gold),0_0_14px_rgba(201,162,39,.3)] transition">หน้าหลัก</a>
+        <a href="index.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">หน้าหลัก</a>
         <a href="school.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">สถานศึกษา</a>
         <a href="Teaching.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">บันทึกการฝึกสอน</a>
         <a href="TeachingPlan.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">แผนการสอน</a>
         <a href="Schedule.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">ตารางสอน</a>
-        <a href="Research.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">วิจัยในชั้นเรียน</a>
+        <a href="Research.html" class="whitespace-nowrap rounded-full bg-gradient-to-r from-[var(--wine)] to-[var(--wine-light)] px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--gold-bright)] shadow-[0_0_0_1px_var(--gold),0_0_14px_rgba(201,162,39,.3)] transition">วิจัยในชั้นเรียน</a>
       </nav>
     </div>
   </header>
 
- <main class="relative z-10 flex-grow py-8 sm:py-12">
+  <main class="relative z-10 flex-grow py-8 sm:py-12">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
 
-      <!-- Block 1: Header / Config Window -->
+      <!-- Block 1: Header -->
       <div class="paper-card rounded-2xl border-2 border-[var(--gold)]/60 shadow-xl overflow-hidden relative group">
-        
-        <!-- Body Content -->
         <div class="p-6 sm:p-8">
           <div class="flex items-center gap-2 text-[var(--wine)] font-semibold text-sm mb-2">
-            <i data-lucide="book-open" class="h-4 w-4"></i>
-            <span>แผนการจัดการเรียนรู้รายวิชา</span>
+            <i data-lucide="flask-conical" class="h-4 w-4"></i>
+            <span>งานวิจัยในชั้นเรียน</span>
           </div>
 
-          <h1 class="serif-title text-2xl sm:text-3xl font-extrabold text-[var(--ink)] mb-3 flex items-center gap-3">
-            <i data-lucide="book-marked" class="h-6 w-6 sm:h-8 sm:w-8 text-[var(--wine)]"></i>
-            แผนการจัดการเรียนรู้ (ภาคเรียนที่ 1/2569)
+          <h1 class="serif-title text-2xl sm:text-2xl font-extrabold text-[var(--ink)] mb-3 flex items-center gap-3">
+            <i data-lucide="scroll-text" class="h-6 w-6 sm:h-8 sm:w-8 text-[var(--wine)]"></i>
+               การจัดการเรียนรู้โดยใช้รูปแบบ Challenge-Based Learning เพื่อส่งเสริมทักษะการปฏิบัติงาน
+               <br> รายวิชาโปรแกรมนำเสนอ สำหรับนักเรียนระดับประกาศนียบัตรวิชาชีพชั้นปีที่ 1 
           </h1>
 
-          <p class="text-[var(--ink-soft)] text-sm sm:text-base max-w-3xl mb-6 font-medium leading-relaxed">
-            แสดงรายวิชาที่สอนในภาคเรียนที่ 1/2569 สามารถกดเปิดใน Google Drive หรือคลิกดูตัวอย่างในหน้านี้
-          </p>
 
-          <!-- Subjects Grid (Expanded to full width) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
-            <!-- Active Subject Tab 1 -->
-            <a href="https://drive.google.com/file/d/1dcO5p1jf83A5v6btIWfGFvau7qF6Vu5N/view?usp=sharing" target="_blank" class="flex flex-col items-start rounded-xl bg-gradient-to-r from-[var(--wine-deep)] to-[var(--wine)] px-5 py-3.5 text-left shadow-[0_0_0_1px_var(--gold),0_4px_10px_rgba(0,0,0,.3)] hover:scale-[1.01] transition-transform no-underline w-full">
-              <span class="text-[10px] sm:text-xs font-bold text-[var(--gold)] opacity-90 tracking-wide">21910-2003</span>
-              <span class="text-sm sm:text-base font-bold text-[var(--gold-bright)] mt-0.5">องค์ประกอบศิลป์สำหรับงานกราฟิก (ปวช.1/1-2)</span>
-            </a>
+          <a href="https://drive.google.com/file/d/1BN2GAg_UocFVkxTVRECIHlseqOjvurKl/view?usp=sharing" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--wine-deep)] to-[var(--wine)] px-5 py-3 text-sm sm:text-base font-bold text-[var(--gold-bright)] shadow-[0_0_0_1px_var(--gold),0_4px_10px_rgba(0,0,0,.3)] hover:scale-[1.02] transition-transform no-underline">
+            <i data-lucide="file-text" class="h-5 w-5"></i>
+            เปิดไฟล์โครงร่างงานวิจัย
+          </a>
+        </div>
+      </div>
 
-            <!-- Subject Tab 2 -->
-            <a href="https://drive.google.com/file/d/17JqJoozDE3D9ao6n4zoZMVwrcWD6o-WR/view?usp=sharing" target="_blank" class="flex flex-col items-start rounded-xl bg-gradient-to-r from-[var(--wine-deep)] to-[var(--wine)] px-5 py-3.5 text-left shadow-[0_0_0_1px_var(--gold),0_4px_10px_rgba(0,0,0,.3)] hover:scale-[1.01] transition-transform no-underline w-full">
-              <span class="text-[10px] sm:text-xs font-bold text-[var(--gold)] opacity-90 tracking-wide">31910-0002</span>
-              <span class="text-sm sm:text-base font-bold text-[var(--gold-bright)] mt-0.5">องค์ประกอบศิลป์สำหรับงานกราฟิก (ปวส.2/3-4)</span>
-            </a>
+      <!-- Block 2: Embedded file preview -->
+      <div class="paper-card rounded-2xl border-2 border-[var(--gold)]/60 shadow-xl overflow-hidden relative">
+        <div class="p-4 sm:p-6">
+          <div class="flex items-center gap-2 text-[var(--wine)] font-semibold text-sm mb-3">
+            <i data-lucide="folder-open" class="h-4 w-4"></i>
+            <span>ไฟล์โครงร่างงานวิจัย</span>
+          </div>
+          <div class="rounded-xl overflow-hidden border border-[var(--gold-dim)]/50 bg-[var(--ink)]/5">
+            <iframe
+              src="https://drive.google.com/file/d/1BN2GAg_UocFVkxTVRECIHlseqOjvurKl/preview"
+              width="100%"
+              height="500"
+              allow="autoplay"
+              style="border:none; display:block;"
+              loading="lazy">
+            </iframe>
           </div>
         </div>
       </div>
