@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>รายงานการฝึกปฏิบัติงานสอน | ตารางสอน</title>
+  <title>รายงานการฝึกปฏิบัติงานสอน | แผนการสอน</title>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Google Fonts: fantasy-book serif for Thai display, Cinzel for engraved Latin labels -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&family=Noto+Serif+Thai:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -54,9 +54,6 @@
       --gold: #C9A227; --gold-bright: #F2D272; --gold-dim: #8C6D3F;
       --parchment: #E8D6A8; --parchment-light: #F4E8C4; --parchment-dark: #CBAA72;
       --ink: #231409; --ink-soft: #4A3420;
-      --emerald: #1F5C4A; --emerald-light: #2E8067;
-      --ruby: #6B0F22; --ruby-light: #9A1B34;
-      --topaz: #8A5A12; --topaz-light: #C68A22;
     }
     * { box-sizing: border-box; }
 
@@ -95,32 +92,12 @@
       background-size: 9px 9px;
     }
 
-    /* Banner-scroll badges (fantasy quest-name plaques) */
-    .slanted-badge {
-      display: inline-flex; align-items: center; justify-content: center; position: relative;
-      background: linear-gradient(135deg, var(--wine-deep) 0%, var(--wine) 55%, var(--wine-light) 100%);
-      color: var(--gold-bright);
-      font-family: "Noto Serif Thai", serif;
-      padding: 0.6rem 2.8rem; font-weight: 700;
-      clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
-      box-shadow: 0 0 0 1px rgba(201, 162, 39, .6), 0 8px 20px rgba(0, 0, 0, .45), 0 0 20px rgba(201, 162, 39, .28);
-      text-shadow: 0 1px 3px rgba(0, 0, 0, .65);
-    }
-    .slanted-badge-bottom {
-      position: absolute; bottom: -6px; right: 12px; height: 9px; width: 55%;
-      background: var(--gold-dim); opacity: .85;
-      clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
-      z-index: -1;
-    }
-
-    /* Gentle candle-glow pulse for the crest / brand mark */
     .glow-pulse { animation: glow-pulse 3.4s ease-in-out infinite; }
     @keyframes glow-pulse {
       0%, 100% { box-shadow: 0 0 10px rgba(201, 162, 39, .35), 0 0 0 1px var(--gold); }
       50% { box-shadow: 0 0 22px rgba(242, 210, 114, .65), 0 0 0 1px var(--gold-bright); }
     }
 
-    /* Ambient floating sparkles + magical burst on interaction */
     .rpg-particle-layer { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
     .rpg-particle {
       position: absolute; bottom: -10px; opacity: 0; color: var(--gold-bright);
@@ -150,14 +127,16 @@
       }
     }
 
-    /* Custom scrollbar for inner container */
-    .custom-scrollbar::-webkit-scrollbar { height: 8px; width: 8px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: var(--parchment-light); border-radius: 4px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 4px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+    @media print {
+      header, footer, button, .no-print, .rpg-particle-layer, .hall-backdrop { display: none !important; }
+      body { background: white !important; color: black !important; }
+      body::before { display: none !important; }
+      .paper-card { border: 1px solid #999 !important; box-shadow: none !important; color: #111 !important; }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-[var(--gold)]/40 selection:text-[var(--ink)]">
+  
   <div class="hall-backdrop" aria-hidden="true">
     <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -174,7 +153,7 @@
           <stop offset="100%" stop-color="#C9A227" stop-opacity=".1"/>
         </linearGradient>
       </defs>
-      <!-- enchanted ceiling glow -->
+
       <ellipse cx="800" cy="70" rx="720" ry="200" fill="url(#skyGlow)"/>
       <g fill="#F2D272" opacity=".6">
         <circle cx="260" cy="60" r="1.6"/><circle cx="340" cy="110" r="1.2"/><circle cx="430" cy="50" r="1.8"/>
@@ -183,7 +162,7 @@
         <circle cx="1080" cy="95" r="1.3"/><circle cx="1170" cy="50" r="1.8"/><circle cx="1260" cy="110" r="1.2"/>
         <circle cx="1340" cy="60" r="1.6"/>
       </g>
-      <!-- receding gothic archways -->
+
       <g fill="none" stroke="url(#archStroke)" stroke-width="2.5">
         <path d="M40 900 L40 260 Q40 166 170 90 Q300 166 300 260 L300 900"/>
         <path d="M1300 900 L1300 260 Q1300 166 1430 90 Q1560 166 1560 260 L1560 900"/>
@@ -194,7 +173,7 @@
         <path d="M380 900 L380 370 Q380 323 442 285 Q505 323 505 370 L505 900"/>
         <path d="M1095 900 L1095 370 Q1095 323 1157 285 Q1220 323 1220 370 L1220 900"/>
       </g>
-      <!-- stone floor perspective -->
+
       <g stroke="#C9A227" stroke-opacity=".22" stroke-width="1.4" fill="none">
         <path d="M0 900 L800 400"/>
         <path d="M1600 900 L800 400"/>
@@ -204,7 +183,7 @@
         <path d="M250 760 L1350 760"/>
         <path d="M380 700 L1220 700"/>
       </g>
-      <!-- floating candlelight down the aisle -->
+
       <g fill="url(#candleGlow)">
         <circle cx="800" cy="860" r="16"/>
         <circle cx="760" cy="770" r="11"/>
@@ -216,7 +195,6 @@
     </svg>
   </div>
 
-  <!-- Top Navigation Header (Game Menu Bar) -->
   <header class="relative z-10 sticky top-0 z-40 border-b-2 border-[var(--gold)] bg-gradient-to-b from-[#2B2B33]/97 to-[#17171B]/98 backdrop-blur shadow-[0_4px_24px_rgba(0,0,0,.5)]">
     <div class="flex w-full flex-wrap items-center justify-between gap-3 px-5 py-3.5 lg:px-8">
       <div class="flex items-center gap-3">
@@ -234,74 +212,50 @@
         <a href="school.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">สถานศึกษา</a>
         <a href="Teaching.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">บันทึกการฝึกสอน</a>
         <a href="TeachingPlan.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">แผนการสอน</a>
-        <a href="Schedule.html" class="whitespace-nowrap rounded-full bg-gradient-to-r from-[var(--wine)] to-[var(--wine-light)] px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--gold-bright)] shadow-[0_0_0_1px_var(--gold),0_0_14px_rgba(201,162,39,.3)] transition">ตารางสอน</a>
+        <a href="Schedule.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">ตารางสอน</a>
         <a href="Research.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">วิจัยในชั้นเรียน</a>
-        <a href="Evaluation.html" class="whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--parchment-dark)] transition hover:bg-[var(--purple-light)]/40 hover:text-[var(--gold-bright)]">แบบการประเมิน</a>
-
-      </nav>
+        <a href="Evaluation.html" class="whitespace-nowrap rounded-full bg-gradient-to-r from-[var(--wine)] to-[var(--wine-light)] px-4 py-1.5 text-xs sm:text-sm font-semibold text-[var(--gold-bright)] shadow-[0_0_0_1px_var(--gold),0_0_14px_rgba(201,162,39,.3)] transition">แบบการประเมิน</a>
+    </nav>
     </div>
   </header>
 
-  <main class="relative z-10 flex-grow py-8 sm:py-12">
-    <!-- ปรับความกว้างจาก max-w-5xl เป็น max-w-7xl เพื่อให้เต็มพื้นที่หน้าจอมากขึ้น -->
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+ <main class="relative z-10 flex-grow py-8 sm:py-12">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
 
-      <!-- macOS-style Magic Windows Layout -->
-      <div class="flex flex-col gap-6">
+      <!-- Block 1: Header / Config Window -->
+      <div class="paper-card rounded-2xl border-2 border-[var(--gold)]/60 shadow-xl overflow-hidden relative group">
+        
+        <!-- Body Content -->
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-2 text-[var(--wine)] font-semibold text-sm mb-2">
+            <i data-lucide="book-open" class="h-4 w-4"></i>
+            <span>ผลการประเมินฝึกประสบการณ์สอน</span>
+          </div>
 
-        <!-- Block 1: Header / Config Window + Image Viewer -->
-        <div class="paper-card rounded-2xl border-2 border-[var(--gold)]/60 shadow-xl overflow-hidden relative group flex flex-col">
+          <h1 class="serif-title text-2xl sm:text-3xl font-extrabold text-[var(--ink)] mb-3 flex items-center gap-3">
+            <i data-lucide="book-marked" class="h-6 w-6 sm:h-8 sm:w-8 text-[var(--wine)]"></i>
+             การประเมินฝึกประสบการณ์สอน
+          </h1>
 
-          <!-- Body - Top Section (Info and Button) -->
-          <div class="p-6 sm:p-10 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
-            <!-- Left Info -->
-            <div class="flex flex-col gap-2">
-               <div class="flex items-center gap-2 text-[var(--wine)] font-semibold text-sm">
-                 <i data-lucide="calendar-days" class="h-4 w-4"></i>
-                 <span>ตารางสอนวิทยาลัยเทคนิคสระบุรี</span>
-               </div>
-               <h2 class="serif-title text-2xl sm:text-3xl font-extrabold text-[var(--ink)] mt-1">ภาคเรียนที่ 1/2569</h2>
-               
-               <p class="text-[var(--ink)] font-medium text-sm sm:text-base mt-2">
-                 ผู้สอน: นางสาวศิริประภา สมบัติคำ
-               </p>
-               <p class="text-[var(--wine)] font-bold text-sm sm:text-base">
-                 รหัสวิชา 21910-2003 วิชาองค์ประกอบศิลป์สำหรับงานกราฟิก
-               </p>
-               <p class="text-[var(--wine)] font-bold text-sm sm:text-base">
-                 รหัสวิชา 31910-0002 วิชาองค์ประกอบศิลป์สำหรับงานกราฟิก
-               </p>
-            </div>
+          <p class="text-[var(--ink-soft)] text-sm sm:text-base max-w-3xl mb-6 font-medium leading-relaxed">
+            ผลการประเมินฝึกประสบการณ์สอนจากครูพี่เลี้ยงและอาจารย์นิเทศการสอน โดยมีเอกสารประกอบการประเมินดังนี้
+          </p>
 
-            <!-- Right Action Button -->
-            <!-- ใส่ Link PDF จริงตรง href="#" -->
-            <a href="https://drive.google.com/file/d/1h3Hooepf1rHEXDGSUrJEVPbZ5zvdNfHk/view?usp=sharing" target="_blank" class="shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#2B2B33] to-[#1A1A24] px-6 py-3.5 text-sm font-semibold text-[var(--gold-bright)] shadow-[0_0_0_1px_var(--gold),0_4px_16px_rgba(0,0,0,.4)] hover:shadow-[0_0_0_1px_var(--gold-bright),0_6px_20px_rgba(201,162,39,.5)] hover:-translate-y-1 transition-all duration-300">
-              <i data-lucide="file-text" class="h-4 w-4"></i>
-              เปิดไฟล์ตารางสอน (PDF)
+          <!-- Subjects Grid (Expanded to full width) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
+            <!-- Active Subject Tab 1 -->
+            <a href="https://drive.google.com/file/d/1ACevCOj6hqTWakxZ4HWT5DPKFDkc-2bm/view?usp=sharing" target="_blank" class="flex flex-col items-start rounded-xl bg-gradient-to-r from-[var(--wine-deep)] to-[var(--wine)] px-5 py-3.5 text-left shadow-[0_0_0_1px_var(--gold),0_4px_10px_rgba(0,0,0,.3)] hover:scale-[1.01] transition-transform no-underline w-full">
+              <span class="text-[10px] sm:text-xs font-bold text-[var(--gold)] opacity-90 tracking-wide">ภาคเรียนที่ 1/2569</span>
+              <span class="text-sm sm:text-base font-bold text-[var(--gold-bright)] mt-0.5">แบบประเมินผลการฝึกประสบการณ์สอน วิทยาลัยเทคนนิคสระบุรี</span>
             </a>
-          </div>
 
-          <!-- Body - Bottom Section (Image Container) -->
-          <div class="p-6 sm:px-10 sm:pb-10 pt-0 flex-grow flex justify-center w-full">
-            <!-- ปรับให้ไม่มีความสูงตายตัว เพื่อให้กรอบพอดีกับรูปภาพ -->
-            <div class="w-full rounded-xl overflow-hidden shadow-inner border border-[var(--gold-dim)]/40 relative bg-[var(--parchment-light)]">
-              
-              <!-- ภาพตารางสอน -->
-              <img src="https://i.postimg.cc/0QTsLX8h/Screenshot-2026-09-09-081728.png" 
-                   alt="รูปภาพตารางสอนวิทยาลัยเทคนิคสระบุรี" 
-                   class="w-full h-auto block z-10"
-                   onerror="this.onerror=null; this.src='https://placehold.co/1200x800/E8D6A8/231409?font=noto-sans&text=Schedule+Image+Placeholder\n(Please+Update+Image+Src)'">
-            </div>
           </div>
-          
         </div>
-
       </div>
 
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="relative z-10 mt-10 border-t-2 border-[var(--gold)] bg-gradient-to-b from-[#17171B]/97 to-[#0A0A0C]/98">
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-center text-center">
       <p class="text-xs sm:text-sm text-[var(--gold-dim)] font-medium">
